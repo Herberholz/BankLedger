@@ -4,10 +4,10 @@ Welcome to the world’s greatest banking ledger. This Ledger is meant to be acc
 
 ### Features ###
 
-•Create a new account
-•Login
-•Record a deposit
-•Record a withdrawal
-•Check balance
-•See transaction history
-•Log out
+  •Create a new account
+  •Login
+  •Record a deposit
+  •Record a withdrawal
+  •Check balance
+  •See transaction history
+  •Log out
