@@ -7,6 +7,7 @@ namespace BankLedger
         static void Main(string[] args)
         {
             Console.WriteLine("---Bank Ledger---");
+            Console.ReadKey();
         }
     }
 }
