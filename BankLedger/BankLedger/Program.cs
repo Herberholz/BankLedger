@@ -1,10 +1,16 @@
-﻿using System;
+﻿//Bank Ledger Program
+//By: Cody Herberholz
+
+using System;
+
+
 
 namespace BankLedger
 {
     class Program
     {
-        //
+        //Main creates the Ledger class and provides the ability to login
+        //to an account or create a new account
         static void Main(string[] args)
         {
             int choice = 0;
@@ -14,7 +20,7 @@ namespace BankLedger
             {
                 choice = book.Menu();
 
-                //if login fails kick back and let try again or create new account
+                //if login fails then bring back main menu
                 switch(choice)
                 {
                     case 1:

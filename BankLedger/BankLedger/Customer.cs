@@ -6,8 +6,11 @@ using System.Text;
 
 namespace BankLedger
 {
-
-    //Need to store secure password for Customer
+    //XXX Need to store secure password for Customer
+    
+    //Customer Class holds personal information about owner of the account and 
+    //is kept private to prevent sensitive information from leaking to other
+    //parts of the program
     class Customer
     {
         private string userName;
@@ -21,6 +24,9 @@ namespace BankLedger
         private string phoneNumber;
         private string dob;
 
+
+
+        //Constructor
         public Customer()
         {
             GatherPersonalInfo();
@@ -28,11 +34,17 @@ namespace BankLedger
             Display();
         }
 
+
+
+        //Destructor
         ~Customer()
         {
 
         }
 
+
+
+        //Gathers personal information from user and stores the data
         private void GatherPersonalInfo()
         {
             Console.WriteLine("\n---Please Enter Personal Information---");
@@ -51,6 +63,10 @@ namespace BankLedger
             Console.Clear();
         }
 
+
+
+        //Takes username from user and then compares with current username to 
+        //see if account is a match 
         public bool VerifyCustomer(string nameToCheck)
         {
             bool match = false;
@@ -63,6 +79,9 @@ namespace BankLedger
             return match;
         }
 
+
+
+        //Displays all Customer data
         private void Display()
         {
             Console.WriteLine("\n---Personal Information---");

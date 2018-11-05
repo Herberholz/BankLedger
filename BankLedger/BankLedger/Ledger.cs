@@ -4,22 +4,35 @@ using System.Text;
 
 //When creating account store in a Hash table with password as key
 
+//Dictionary<TKey, TValue> is a generic type which provides type safety
+
 namespace BankLedger
 {
+    //The purpose of the Ledger class is to provide the initial functionality
+    //of account creation and login of supplied account. 
     class Ledger
     {
-        List<Account> accounts;
+        List<Account> accounts; //Switch to dictionary
 
+
+
+        //Constructor
         public Ledger()
         {
             accounts = new List<Account>();
         }
         
+
+
+        //Destructor
         ~Ledger()
         {
 
         }
 
+
+
+        //Provides the initial main menu to login, create account, or exit
         public int Menu()
         {
             int MenuChoice = 0;
@@ -40,15 +53,22 @@ namespace BankLedger
             return MenuChoice;
         }
 
+
+
+        //Creates a new account and then adds it to the collection of created 
+        //accounts stored locally
         public void CreateAccount()
         {
             Console.WriteLine("Creating New Account");
             
-            //XXX Possibly use Hash Table
             Account person = new Account();
             accounts.Add(person);
         }
 
+
+
+        //Takes user data and compares with each account to find a match in order
+        //to login. If no match is found then it returns to main menu
         public int Login()
         {
             bool match = false;
@@ -68,7 +88,6 @@ namespace BankLedger
                 if(match)
                 {
                     accounts[i].AccessAccount();
-                    //accounts[i].Menu();
                 }
             }
             

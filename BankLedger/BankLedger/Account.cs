@@ -2,25 +2,23 @@
 using System.Collections.Generic;
 using System.Text;
 
-//each person should have private class instance to keep password secret
 
-//each account should have their own transaction history, 
-//   each account has own data structure
-
-//transaction history example
-//Deposit 30
-//withdraw 20
-//withdraw 10
 
 namespace BankLedger
 {
-
+    //Account class gives functionality to deposit, withdraw, display balance,
+    //display transaction history, and account menu
+    //also holds the transaction history in a generic collection and customer 
+    //data within a class
     class Account
     {
         Customer personalData;
         List<string> transactionHistory;
         private int balance;
 
+
+
+        //Constructor
         public Account()
         {
             personalData = new Customer();
@@ -28,15 +26,22 @@ namespace BankLedger
             balance = 0;
         }
         
+
+
+        //Destructor
         ~Account()
         {
 
         }
 
+
+
+        //Gives the menu options for the account
         public int Menu()
         {
             int MenuChoice = 0;
 
+            //only exits menu when logout is chosen
             do
             {
                 Console.WriteLine("\n---Account----------------");
@@ -55,6 +60,11 @@ namespace BankLedger
             return MenuChoice;
         }
 
+
+
+        //When verification is successful then this function controls the workflow
+        //when customer is within the account choosing whether to deposit, withdraw,
+        //check balance, check transactions, or logout
         public void AccessAccount()
         {
             int choice = 0;
@@ -86,11 +96,19 @@ namespace BankLedger
             }while(choice != 5);
         }
 
+
+
+        //Takes in username from user and checks with the account's customer
+        //data to see if there is a match
         public bool VerifyAccount(string nameToCheck)
         {
             return personalData.VerifyCustomer(nameToCheck);
         }
 
+
+
+        //Takes deposit amount from user, updates balance, and then updates 
+        //transaction history
         public void Deposit()
         {
             int amount = 0;
@@ -100,6 +118,10 @@ namespace BankLedger
             transactionHistory.Add("Deposit " + amount);
         }
 
+
+
+        //Takes withdrawal amount from user, updates balance, and then updates
+        //transaction history
         public void Withdraw()
         {
             int amount = 0;
@@ -111,12 +133,22 @@ namespace BankLedger
             transactionHistory.Add("Withdraw " + amount);
         }
 
+
+
+        //Displays total balance
         public void CheckBalance()
         {
             Console.Clear();
             Console.WriteLine("Balance: " + balance);
+
+            Console.Write("\n\nPress any key to continue... ");
+            Console.ReadKey();
+            Console.Clear();
         }
 
+
+
+        //Displays customers transaction history
         public void CheckTransactions()
         {
             int length = transactionHistory.Count;
@@ -129,6 +161,10 @@ namespace BankLedger
             }
 
             Console.WriteLine("-------------------------");
+
+            Console.Write("\n\nPress any key to continue... ");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }
