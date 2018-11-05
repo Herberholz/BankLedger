@@ -1,0 +1,78 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+
+
+namespace BankLedger
+{
+
+    //Need to store secure password for Customer
+    class Customer
+    {
+        private string userName;
+        private string firstName;
+        private string lastName;
+        private string address;
+        //private string streetName;
+        //private string cityName;
+        //private string stateName;
+        //private int    zipcode;
+        private string phoneNumber;
+        private string dob;
+
+        public Customer()
+        {
+            GatherPersonalInfo();
+            Console.Clear();
+            Display();
+        }
+
+        ~Customer()
+        {
+
+        }
+
+        private void GatherPersonalInfo()
+        {
+            Console.WriteLine("\n---Please Enter Personal Information---");
+            Console.Write("Enter Username: ");
+            userName = Console.ReadLine();
+            Console.Write("Enter First Name: ");
+            firstName = Console.ReadLine();
+            Console.Write("Enter Last Name: ");
+            lastName = Console.ReadLine();
+            Console.Write("Enter Address: ");
+            address = Console.ReadLine(); 
+            Console.Write("Enter Phone Number: ");
+            phoneNumber = Console.ReadLine(); 
+            Console.Write("Enter Date Of Birth (EX: m/d/y): ");
+            dob = Console.ReadLine();
+            Console.Clear();
+        }
+
+        public bool VerifyCustomer(string nameToCheck)
+        {
+            bool match = false;
+
+            if(string.Compare(userName, nameToCheck, false) == 0)
+            {
+                match = true;
+            }
+        
+            return match;
+        }
+
+        private void Display()
+        {
+            Console.WriteLine("\n---Personal Information---");
+            Console.WriteLine("Username: " + userName);
+            Console.WriteLine("First Name: " + firstName);
+            Console.WriteLine("Last Name: " + lastName);
+            Console.WriteLine("Address: " + address);
+            Console.WriteLine("Phone Number: " + phoneNumber);
+            Console.WriteLine("DOB: " + dob);
+            Console.WriteLine("----------------------------");
+        }
+    }
+}
