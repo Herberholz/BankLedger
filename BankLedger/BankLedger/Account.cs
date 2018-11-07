@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
+//If mulitple accounts are wanted for the customer than a Base Class can be created 
+//with derived classes acting as different types of accounts, such as Checking and 
+//Savings
 
 namespace BankLedger
 {
@@ -21,14 +23,6 @@ namespace BankLedger
         {
             transactionHistory = new List<string>(); 
             balance = 0.0;
-        }
-        
-
-
-        //Destructor
-        ~Account()
-        {
-
         }
 
 
@@ -93,6 +87,7 @@ namespace BankLedger
                         Console.WriteLine("Logging Out");
                         break;
                     default:
+                        Console.WriteLine("Command Not Recognized\n");
                         break;
                 }
             }while(choice != 5);
@@ -114,9 +109,16 @@ namespace BankLedger
         //transaction history
         private void Withdraw(double amountToTake)
         {
-            //Can only withdraw a certain amount past 0
-            balance -= amountToTake;
-            transactionHistory.Add("Withdraw " + amountToTake);
+            //Can only withdraw if balance > 0
+            if (balance >= amountToTake)
+            {
+                balance -= amountToTake;
+                transactionHistory.Add("Withdraw " + amountToTake);
+            }
+            else
+            {
+                Console.WriteLine("Balance Too Low");
+            }
         }
 
 

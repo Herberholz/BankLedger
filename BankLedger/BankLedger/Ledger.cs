@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-//When creating account store in a Hash table with password as key
 
-//Dictionary<TKey, TValue> is a generic type which provides type safety
 
 namespace BankLedger
 {
@@ -12,20 +9,15 @@ namespace BankLedger
     //of account creation and login of supplied account. 
     class Ledger
     {
-        Dictionary<string, Customer> personalData;
+        Dictionary<string, Customer> personalData; //Dictionary<TKey, TValue> is a generic type which provides type safety and fast lookup
+
+
+
 
         //Constructor
         public Ledger()
         {
             personalData = new Dictionary<string, Customer>();
-        }
-        
-
-
-        //Destructor
-        ~Ledger()
-        {
-
         }
 
 
@@ -69,7 +61,7 @@ namespace BankLedger
 
         //Takes user data and compares with each account to find a match in order
         //to login. If no match is found then it returns to main menu
-        public int Login()
+        public void Login()
         {
             string name;
 
@@ -85,8 +77,6 @@ namespace BankLedger
             {
                 Console.WriteLine("Account Not Found");
             }
-
-            return 0;
         }
     }
 }

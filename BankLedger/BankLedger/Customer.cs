@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 
 
@@ -11,7 +9,7 @@ namespace BankLedger
     //Customer Class holds personal information about owner of the account and 
     //is kept private to prevent sensitive information from leaking to other
     //parts of the program
-    public class Customer
+    class Customer
     {
         public string UserName { get; private set; } //Property that returns username
         private string firstName;
@@ -29,14 +27,6 @@ namespace BankLedger
             GatherPersonalInfo();
             Console.Clear();
             Display();
-        }
-
-
-
-        //Destructor
-        ~Customer()
-        {
-
         }
 
 
@@ -69,22 +59,6 @@ namespace BankLedger
             //XXX add menu here when more than one account is necessary to choose from
 
             checking.AccountWorkflow();
-        }
-
-
-
-        //Takes username from user and then compares with current username to 
-        //see if account is a match 
-        public bool VerifyCustomer(string nameToCheck)
-        {
-            bool match = false;
-
-            if(string.Compare(UserName, nameToCheck, false) == 0)
-            {
-                match = true;
-            }
-        
-            return match;
         }
 
 

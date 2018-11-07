@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankLedger", "BankLedger\BankLedger.csproj", "{8D81474E-D8C0-450B-BA1C-46AA0C3E04B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankLedger.UnitTests", "BankLedger.UnitTests\BankLedger.UnitTests.csproj", "{2AD92A4F-9F2D-470C-810D-D4A003900DB5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{8D81474E-D8C0-450B-BA1C-46AA0C3E04B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D81474E-D8C0-450B-BA1C-46AA0C3E04B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D81474E-D8C0-450B-BA1C-46AA0C3E04B0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2AD92A4F-9F2D-470C-810D-D4A003900DB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2AD92A4F-9F2D-470C-810D-D4A003900DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2AD92A4F-9F2D-470C-810D-D4A003900DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2AD92A4F-9F2D-470C-810D-D4A003900DB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
