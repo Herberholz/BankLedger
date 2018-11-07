@@ -11,24 +11,21 @@ namespace BankLedger
     //Customer Class holds personal information about owner of the account and 
     //is kept private to prevent sensitive information from leaking to other
     //parts of the program
-    class Customer
+    public class Customer
     {
-        private string userName;
+        public string UserName { get; private set; } //Property that returns username
         private string firstName;
         private string lastName;
-        private string address;
-        //private string streetName;
-        //private string cityName;
-        //private string stateName;
-        //private int    zipcode;
+        private string address;      
         private string phoneNumber;
         private string dob;
-
+        Account checking;
 
 
         //Constructor
         public Customer()
         {
+            checking = new Account();
             GatherPersonalInfo();
             Console.Clear();
             Display();
@@ -49,7 +46,7 @@ namespace BankLedger
         {
             Console.WriteLine("\n---Please Enter Personal Information---");
             Console.Write("Enter Username: ");
-            userName = Console.ReadLine();
+            UserName = Console.ReadLine();
             Console.Write("Enter First Name: ");
             firstName = Console.ReadLine();
             Console.Write("Enter Last Name: ");
@@ -58,9 +55,20 @@ namespace BankLedger
             address = Console.ReadLine(); 
             Console.Write("Enter Phone Number: ");
             phoneNumber = Console.ReadLine(); 
-            Console.Write("Enter Date Of Birth (EX: m/d/y): ");
+            Console.Write("Enter Date Of Birth (EX: mm/dd/yyyy): ");
             dob = Console.ReadLine();
             Console.Clear();
+        }
+
+
+
+        //When verification is successful then this function lets the customer into their account
+        //Can be expanded upon if multiple accounts are added
+        public void AccessAccount()
+        {
+            //XXX add menu here when more than one account is necessary to choose from
+
+            checking.AccountWorkflow();
         }
 
 
@@ -71,7 +79,7 @@ namespace BankLedger
         {
             bool match = false;
 
-            if(string.Compare(userName, nameToCheck, false) == 0)
+            if(string.Compare(UserName, nameToCheck, false) == 0)
             {
                 match = true;
             }
@@ -85,7 +93,7 @@ namespace BankLedger
         private void Display()
         {
             Console.WriteLine("\n---Personal Information---");
-            Console.WriteLine("Username: " + userName);
+            Console.WriteLine("Username: " + UserName);
             Console.WriteLine("First Name: " + firstName);
             Console.WriteLine("Last Name: " + lastName);
             Console.WriteLine("Address: " + address);

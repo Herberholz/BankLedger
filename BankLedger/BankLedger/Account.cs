@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 
 
@@ -12,18 +11,16 @@ namespace BankLedger
     //data within a class
     class Account
     {
-        Customer personalData;
-        List<string> transactionHistory;
-        private int balance;
+        private List<string> transactionHistory;
+        private double balance;
 
 
 
         //Constructor
         public Account()
         {
-            personalData = new Customer();
             transactionHistory = new List<string>(); 
-            balance = 0;
+            balance = 0.0;
         }
         
 
@@ -37,7 +34,7 @@ namespace BankLedger
 
 
         //Gives the menu options for the account
-        public int Menu()
+        private int Menu()
         {
             int MenuChoice = 0;
 
@@ -62,12 +59,13 @@ namespace BankLedger
 
 
 
-        //When verification is successful then this function controls the workflow
-        //when customer is within the account choosing whether to deposit, withdraw,
-        //check balance, check transactions, or logout
-        public void AccessAccount()
+        //When verification is successful then this function lets the customer choose
+        //different functionality within the account. Such as Deposit, Withdrawal, 
+        //Checking the balance, Checking the transaction history, and logging out
+        public void AccountWorkflow()
         {
             int choice = 0;
+            double amount = 0.0;
 
             do
             {
@@ -76,10 +74,14 @@ namespace BankLedger
                 switch(choice)
                 {
                     case 1:
-                        Deposit();
+                        Console.Write("Deposit Amount: ");
+                        amount = Convert.ToDouble(Console.ReadLine());
+                        Deposit(amount);
                         break;
                     case 2:
-                        Withdraw();
+                        Console.Write("Withdraw Amount: ");
+                        amount = Convert.ToDouble(Console.ReadLine());
+                        Withdraw(amount);
                         break;
                     case 3:
                         CheckBalance();
@@ -98,45 +100,29 @@ namespace BankLedger
 
 
 
-        //Takes in username from user and checks with the account's customer
-        //data to see if there is a match
-        public bool VerifyAccount(string nameToCheck)
-        {
-            return personalData.VerifyCustomer(nameToCheck);
-        }
-
-
-
         //Takes deposit amount from user, updates balance, and then updates 
         //transaction history
-        public void Deposit()
+        private void Deposit(double amountToAdd)
         {
-            int amount = 0;
-            Console.Write("Deposit Amount: ");
-            amount = Convert.ToInt32(Console.ReadLine());
-            balance += amount;
-            transactionHistory.Add("Deposit " + amount);
+            balance += amountToAdd;
+            transactionHistory.Add("Deposit " + amountToAdd);
         }
 
 
 
         //Takes withdrawal amount from user, updates balance, and then updates
         //transaction history
-        public void Withdraw()
+        private void Withdraw(double amountToTake)
         {
-            int amount = 0;
-            Console.Write("Withdraw Amount: ");
-            amount = Convert.ToInt32(Console.ReadLine());
-
             //Can only withdraw a certain amount past 0
-            balance -= amount;
-            transactionHistory.Add("Withdraw " + amount);
+            balance -= amountToTake;
+            transactionHistory.Add("Withdraw " + amountToTake);
         }
 
 
 
         //Displays total balance
-        public void CheckBalance()
+        private void CheckBalance()
         {
             Console.Clear();
             Console.WriteLine("Balance: " + balance);
@@ -149,7 +135,7 @@ namespace BankLedger
 
 
         //Displays customers transaction history
-        public void CheckTransactions()
+        private void CheckTransactions()
         {
             int length = transactionHistory.Count;
 

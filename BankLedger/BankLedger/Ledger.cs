@@ -12,14 +12,12 @@ namespace BankLedger
     //of account creation and login of supplied account. 
     class Ledger
     {
-        List<Account> accounts; //Switch to dictionary
-
-
+        Dictionary<string, Customer> personalData;
 
         //Constructor
         public Ledger()
         {
-            accounts = new List<Account>();
+            personalData = new Dictionary<string, Customer>();
         }
         
 
@@ -59,10 +57,12 @@ namespace BankLedger
         //accounts stored locally
         public void CreateAccount()
         {
+            string key;
             Console.WriteLine("Creating New Account");
-            
-            Account person = new Account();
-            accounts.Add(person);
+
+            Customer person = new Customer();
+            key = person.UserName;
+            personalData.Add(key, person);
         }
 
 
@@ -71,27 +71,17 @@ namespace BankLedger
         //to login. If no match is found then it returns to main menu
         public int Login()
         {
-            bool match = false;
             string name;
 
             Console.Write("Please Enter Username: ");
             name = Console.ReadLine();
 
             //Validate Credentials
-            //If match login and show account menu
-            //otherwise kick back to main screen
-            for(int i = 0; i < accounts.Count && !match; ++i)
+            if(personalData.ContainsKey(name))
             {
-                
-                match = accounts[i].VerifyAccount(name);
-
-                if(match)
-                {
-                    accounts[i].AccessAccount();
-                }
+                personalData[name].AccessAccount();
             }
-            
-            if(!match)
+            else
             {
                 Console.WriteLine("Account Not Found");
             }
