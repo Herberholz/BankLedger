@@ -25,10 +25,10 @@ namespace BankLedger
         //Constructor
         public Customer()
         {
-            string key = "password";
             string name = "username";
+            string pass = "password";
             checking = new Account();
-            GatherPersonalInfo(key, name);
+            GatherPersonalInfo(name, pass);
             Console.Clear();
             Display();
         }
@@ -36,10 +36,10 @@ namespace BankLedger
 
 
         //Password and Username are passed into this constructor
-        public Customer(string key, string name)
+        public Customer(string name, string tempPass)
         {
             checking = new Account();
-            GatherPersonalInfo(key, name);
+            GatherPersonalInfo(name, tempPass);
             Console.Clear();
             EncryptPassword(password);
             Display();
@@ -48,11 +48,11 @@ namespace BankLedger
 
 
         //Gathers personal information from user and stores the data
-        private void GatherPersonalInfo(string key, string name)
+        private void GatherPersonalInfo(string name, string TempPass)
         {
             Console.WriteLine("\n---Please Enter Personal Information---");
             userName = name;
-            password = key;
+            password = TempPass;
             Console.Write("Enter First Name: ");
             firstName = Console.ReadLine();
             Console.Write("Enter Last Name: ");
@@ -74,11 +74,11 @@ namespace BankLedger
         {
             salt = new byte[32];
 
-            var cryptoProvider = new RNGCryptoServiceProvider();
+            RNGCryptoServiceProvider cryptoProvider = new RNGCryptoServiceProvider();
             cryptoProvider.GetBytes(salt);
 
             Rfc2898DeriveBytes encrypt = new Rfc2898DeriveBytes(pass, salt, 1000);
-            password = Encoding.Default.GetString(encrypt.GetBytes(32));
+            password = Encoding.Default.GetString(encrypt.GetBytes(32)); //Converts bytes to string
         }
 
 

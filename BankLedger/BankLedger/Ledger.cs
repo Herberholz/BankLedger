@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace BankLedger
 {
@@ -48,21 +46,21 @@ namespace BankLedger
         //accounts stored locally
         public void CreateAccount()
         {
-            string key; //username is used as the key for the dictionary
+            string name; //username is used as the key for the dictionary
             string pass; //holds password temporarily
             Customer person;
 
             Console.WriteLine("Creating New Account");
             Console.Write("Enter Username: ");
-            key = Console.ReadLine();
+            name = Console.ReadLine();
             Console.Write("Enter Password: ");
             pass = Console.ReadLine();
 
 
-            if (!personalData.ContainsKey(key))
+            if (!personalData.ContainsKey(name))
             {
-                person = new Customer(key, pass);
-                personalData.Add(key, person); //username is used as a hash
+                person = new Customer(name, pass);
+                personalData.Add(name, person); //username is used as a hash
             }
             else
             {
