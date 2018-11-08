@@ -5,9 +5,9 @@ namespace BankLedger
 {
     //The purpose of the Ledger class is to provide the initial functionality
     //of account creation and login of supplied account. 
-    class Ledger
+    public class Ledger
     {
-        private Dictionary<string, Customer> personalData; //Dictionary<TKey, TValue> is a generic type which provides type safety and fast lookup
+        public Dictionary<string, Customer> personalData;
 
 
 
@@ -83,9 +83,9 @@ namespace BankLedger
             pass = Console.ReadLine();
 
             //Validate Credentials
-            if(personalData.ContainsKey(name))
+            if (personalData.ContainsKey(name))
             {
-                if(personalData[name].VerifyPassword(name, pass))
+                if (personalData[name].VerifyPassword(name, pass))
                 {
                     personalData[name].AccessAccount();
                 }

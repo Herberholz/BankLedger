@@ -11,24 +11,24 @@ namespace BankLedger
     //display transaction history, and account menu
     //also holds the transaction history in a generic collection and customer 
     //data within a class
-    class Account
+    public class Account
     {
-        private List<string> transactionHistory; //holds a list of strings giving a complete history of transactions
-        private double balance;  //Balance of Account
+        public List<string> TransactionHistory  { get; private set; }   //holds a list of strings giving a complete history of transactions
+        public double Balance { get; private set; }  //Balance of Account
 
 
 
         //Constructor
         public Account()
         {
-            transactionHistory = new List<string>(); 
-            balance = 0.0;
+            TransactionHistory = new List<string>(); 
+            Balance = 0.0;
         }
 
 
 
         //Gives the menu options for the account
-        private int Menu()
+        public int Menu()
         {
             int MenuChoice = 0;
 
@@ -100,8 +100,8 @@ namespace BankLedger
         //transaction history
         private void Deposit(double amountToAdd)
         {
-            balance += amountToAdd;
-            transactionHistory.Add("Deposit " + amountToAdd);
+            Balance += amountToAdd;
+            TransactionHistory.Add("Deposit " + amountToAdd);
         }
 
 
@@ -111,10 +111,10 @@ namespace BankLedger
         private void Withdraw(double amountToTake)
         {
             //Can only withdraw if balance > 0
-            if (balance >= amountToTake)
+            if (Balance >= amountToTake)
             {
-                balance -= amountToTake;
-                transactionHistory.Add("Withdraw " + amountToTake);
+                Balance -= amountToTake;
+                TransactionHistory.Add("Withdraw " + amountToTake);
             }
             else
             {
@@ -128,7 +128,7 @@ namespace BankLedger
         private void CheckBalance()
         {
             Console.Clear();
-            Console.WriteLine("Balance: " + balance);
+            Console.WriteLine("Balance: " + Balance);
 
             Console.Write("\n\nPress any key to continue... ");
             Console.ReadKey();
@@ -140,13 +140,13 @@ namespace BankLedger
         //Displays customers transaction history
         private void CheckTransactions()
         {
-            int length = transactionHistory.Count;
+            int length = TransactionHistory.Count;
 
             Console.WriteLine("---Transaction History---");
 
             for(int i = 0; i < length; ++i)
             {
-                Console.WriteLine(transactionHistory[i]);
+                Console.WriteLine(TransactionHistory[i]);
             }
 
             Console.WriteLine("-------------------------");

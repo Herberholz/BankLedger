@@ -9,7 +9,7 @@ namespace BankLedger
     //Customer Class holds personal information about owner of the account and 
     //is kept private to prevent sensitive information from leaking to other
     //parts of the program
-    class Customer
+    public class Customer
     {
         private byte[] salt;
         private string userName;
