@@ -13,8 +13,8 @@ namespace BankLedger
     //data within a class
     class Account
     {
-        private List<string> transactionHistory;
-        private double balance;
+        private List<string> transactionHistory; //holds a list of strings giving a complete history of transactions
+        private double balance;  //Balance of Account
 
 
 

@@ -11,8 +11,8 @@ namespace BankLedger
     //parts of the program
     class Customer
     {
-        public byte[] Salt { get; set; }  //Auto-Implemented Property
-        public string UserName { get; private set; } //Property that returns username
+        private byte[] salt;
+        private string userName;
         private string password;
         private string firstName;
         private string lastName;
@@ -34,6 +34,8 @@ namespace BankLedger
         }
 
 
+
+        //Password and Username are passed into this constructor
         public Customer(string key, string name)
         {
             checking = new Account();
@@ -49,7 +51,7 @@ namespace BankLedger
         private void GatherPersonalInfo(string key, string name)
         {
             Console.WriteLine("\n---Please Enter Personal Information---");
-            UserName = name;
+            userName = name;
             password = key;
             Console.Write("Enter First Name: ");
             firstName = Console.ReadLine();
@@ -70,12 +72,12 @@ namespace BankLedger
         //encrypt the password so it can be stored safely
         private void EncryptPassword(string pass)
         {
-            Salt = new byte[32];
+            salt = new byte[32];
 
             var cryptoProvider = new RNGCryptoServiceProvider();
-            cryptoProvider.GetBytes(Salt);
+            cryptoProvider.GetBytes(salt);
 
-            Rfc2898DeriveBytes encrypt = new Rfc2898DeriveBytes(pass, Salt, 1000);
+            Rfc2898DeriveBytes encrypt = new Rfc2898DeriveBytes(pass, salt, 1000);
             password = Encoding.Default.GetString(encrypt.GetBytes(32));
         }
 
@@ -86,7 +88,7 @@ namespace BankLedger
         {
             bool match = false;
 
-            Rfc2898DeriveBytes encrypt = new Rfc2898DeriveBytes(pass, Salt, 1000);
+            Rfc2898DeriveBytes encrypt = new Rfc2898DeriveBytes(pass, salt, 1000);
             var incomingPassword = Encoding.Default.GetString(encrypt.GetBytes(32));
 
             if(incomingPassword == password)
@@ -114,7 +116,7 @@ namespace BankLedger
         private void Display()
         {
             Console.WriteLine("\n---Personal Information---");
-            Console.WriteLine("Username: " + UserName);
+            Console.WriteLine("Username: " + userName);
             Console.WriteLine("First Name: " + firstName);
             Console.WriteLine("Last Name: " + lastName);
             Console.WriteLine("Address: " + address);
