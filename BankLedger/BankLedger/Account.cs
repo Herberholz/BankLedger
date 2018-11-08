@@ -63,6 +63,7 @@ namespace BankLedger
 
             do
             {
+                Console.Clear();
                 choice = Menu();
 
                 switch(choice)

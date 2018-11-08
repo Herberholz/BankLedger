@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
-
+using System.Security.Cryptography;
+using System.Text;
 
 namespace BankLedger
 {
@@ -9,8 +9,7 @@ namespace BankLedger
     //of account creation and login of supplied account. 
     class Ledger
     {
-        Dictionary<string, Customer> personalData; //Dictionary<TKey, TValue> is a generic type which provides type safety and fast lookup
-
+        private Dictionary<string, Customer> personalData; //Dictionary<TKey, TValue> is a generic type which provides type safety and fast lookup
 
 
 
@@ -38,10 +37,11 @@ namespace BankLedger
                 Console.Write("Please Select a Number: ");
                 MenuChoice = Convert.ToInt32(Console.ReadLine());
                 Console.Clear();
-            } while(MenuChoice > 3 || MenuChoice <= 0);
+            } while (MenuChoice > 3 || MenuChoice <= 0);
 
             return MenuChoice;
         }
+
 
 
 
@@ -49,12 +49,26 @@ namespace BankLedger
         //accounts stored locally
         public void CreateAccount()
         {
-            string key;
-            Console.WriteLine("Creating New Account");
+            string key; //username is used as the key for the dictionary
+            string pass; //holds password temporarily
+            Customer person;
 
-            Customer person = new Customer();
-            key = person.UserName;
-            personalData.Add(key, person);
+            Console.WriteLine("Creating New Account");
+            Console.Write("Enter Username: ");
+            key = Console.ReadLine();
+            Console.Write("Enter Password: ");
+            pass = Console.ReadLine();
+
+
+            if (!personalData.ContainsKey(key))
+            {
+                person = new Customer(key, pass);
+                personalData.Add(key, person); //username is used as a hash
+            }
+            else
+            {
+                Console.WriteLine("Account already exists");
+            }
         }
 
 
@@ -64,17 +78,29 @@ namespace BankLedger
         public void Login()
         {
             string name;
+            string pass;
 
             Console.Write("Please Enter Username: ");
             name = Console.ReadLine();
+            Console.Write("Please Enter Password: ");
+            pass = Console.ReadLine();
 
             //Validate Credentials
             if(personalData.ContainsKey(name))
             {
-                personalData[name].AccessAccount();
+                if(personalData[name].VerifyPassword(name, pass))
+                {
+                    personalData[name].AccessAccount();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Password Incorrect");
+                }
             }
             else
             {
+                Console.Clear();
                 Console.WriteLine("Account Not Found");
             }
         }
